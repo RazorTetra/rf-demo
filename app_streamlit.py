@@ -45,7 +45,7 @@ def create_gauge_chart(value, title):
         }
     ))
     
-    # Update layout for better visualization
+    # Visualisasi
     fig.update_layout(
         height=300,
         margin=dict(l=30, r=30, t=30, b=30),
@@ -132,13 +132,13 @@ def main():
                 # Vectorize input
                 vector = vectorizer.transform([title])
                 
-                # Get prediction and probabilities
+                # Get prediction dan probabilities
                 prediction = model.predict(vector)
                 probabilities = model.predict_proba(vector)[0]
                 
                 predicted_class = le.inverse_transform(prediction)[0]
                 
-                # Show results in a card-like container
+                # Tampilkan hasil
                 st.markdown("""
                     <div style='background-color: #262730; padding: 30px; border-radius: 10px; margin: 30px 0;'>
                         <h2>Hasil Prediksi</h2>
@@ -147,22 +147,21 @@ def main():
                     </div>
                 """.format(predicted_class), unsafe_allow_html=True)
                 
-                # Confidence scores with gauge charts
+                # Confidence scores
                 st.markdown("<h3>Confidence Scores</h3>", unsafe_allow_html=True)
                 
-                # Create columns for each class
+                # Kolom Kelas
                 cols = st.columns(len(le.classes_))
                 
-                # Display gauge charts in columns
+                # Charts
                 for i, (label, prob) in enumerate(zip(le.classes_, probabilities)):
                     with cols[i]:
                         fig = create_gauge_chart(prob, label)
                         st.plotly_chart(fig, use_container_width=True)
                 
-                # Feature importance analysis
+                # Kata Kunci
                 st.markdown("<h3>Analisis Kata Kunci</h3>", unsafe_allow_html=True)
                 
-                # Get feature importance for this prediction
                 feature_names = vectorizer.get_feature_names_out()
                 important_words = pd.DataFrame({
                     'Kata': feature_names,
@@ -187,10 +186,11 @@ def main():
                         yaxis={'showgrid': True, 'gridcolor': '#333'}
                     )
                     st.plotly_chart(fig, use_container_width=True)
-                
+        # Error 
         except Exception as e:
             st.error(f"Gagal melakukan prediksi: {str(e)}")
             
+    # Error jika form kosong
     elif predict_button:
         st.warning("⚠️ Mohon masukkan judul skripsi terlebih dahulu!")
 

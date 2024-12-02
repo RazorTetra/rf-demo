@@ -1,4 +1,5 @@
 # Panduan
+## Versi 1.1
 
 ### 1. Clone repository atau download zip
 Clone dengan perintah berikut di cmd atau powershell:
@@ -16,13 +17,23 @@ Pastikan versi python yang terinstal adalah 3.11.4 atau buat envs
 Jalankan perintah berikut di cmd atau powershell
 
     pip install -r requirements.txt
+    pip install matplotlib seaborn
 
 
-### 3. Jalankan aplikasi
-Jalankan User Interface perinstah berikut di cmd atau powershell
+### 3. Tokenize Training Data dan Tes Data
+Jalankan perintah berikut di terminal secara berurutan di direktori project
 
-    streamlit run app_streamlit.py
+    python tokenize/tokenization.py
+    python tokenize/feature_extraction.py
+    python tokenize/test_tokenization.py
+    python tokeniza/text_feature.py
 
+### 4. Buat Model RF
+Jalankan perintah berikut untuk membuat model
 
-### 4. Pop up
-Pastikan "allow" jika terdapat pop up dari python terkait koneksi
+    python model/random_forest_model.py
+
+### 5. Lakukan Assess Step
+Jalankan perintah berikut untuk melihat assess dari model
+
+    python assess/assess_model.py

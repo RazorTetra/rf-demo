@@ -26,7 +26,7 @@ Jalankan perintah berikut di terminal secara berurutan di direktori project
     python tokenize/tokenization.py
     python tokenize/feature_extraction.py
     python tokenize/test_tokenization.py
-    python tokeniza/text_feature.py
+    python tokenize/text_feature.py
 
 ### 4. Buat Model RF
 Jalankan perintah berikut untuk membuat model
